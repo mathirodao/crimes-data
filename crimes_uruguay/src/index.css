@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-white: #ffffff;
+  --rounded-lg: 0.5rem;
+  --spacing-6: 1.5rem;
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  .card {
+    background-color: theme('colors.white');
+    border-width: 0.1rem;
+    border-color: theme('colors.blue');
+    border-radius: var(--rounded-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+.custom-disabled-hover:disabled:hover {
+  color: black;
+}
+
+.icon:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+}
