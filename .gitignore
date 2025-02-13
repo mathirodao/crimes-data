@@ -1,0 +1,20 @@
+# Ignorar archivos .env en cualquier directorio
+.env*
+
+# Ignorar archivos de node_modules
+node_modules/
+
+# Ignorar archivos de compilación o temporales
+*.log
+*.tmp
+dist/
+build/
+
+# Ignorar archivos específicos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar credenciales o archivos sensibles
+credentials.json
+*.key
+*.pem
