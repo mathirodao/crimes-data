@@ -8,7 +8,6 @@ client = None
 def init_db(app):
     global client
     mongo_uri = app.config.get("MONGO_URI", Config.MONGO_URI)
-    print(f"Conexión URI: {mongo_uri}") 
     client = MongoClient(mongo_uri)
     app.db = client["crimes"]  
     print('Conexión exitosa a MongoDB')

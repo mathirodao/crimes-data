@@ -5,7 +5,6 @@ api_bp = Blueprint("api", __name__)
 
 @api_bp.route('/crimes_count', methods=['GET'])
 def get_count_crimes():
-    print('en crimes')
     collection = current_app.db["infoCrimes"]
     
     # Convertir la fecha a formato adecuado para usarla en el gráfico
