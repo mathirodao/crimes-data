@@ -6,12 +6,17 @@ import os
 MONGO_URI = os.getenv("MONGO_URI")
 DB = os.getenv("DB")
 COLLECTION = os.getenv("COLLECTION")
-uri = MONGO_URI
+# uri = MONGO_URI
 
 # Conecta a MongoDB
-client = MongoClient(uri)
-db = client[DB]  
-collection = db[COLLECTION]  
+# client = MongoClient(uri)
+# db = client[DB]  
+# collection = db[COLLECTION]  
+client = MongoClient(MONGO_URI, tls=True, tlsAllowInvalidCertificates=True)
+db = client["crimes"]  
+collection = db["infoCrimes"]  
+
+print(client.list_database_names()) 
 
 # Leer los datos desde el archivo JSON
 with open('uruguay_crime_data.json') as file:
@@ -43,6 +48,6 @@ for index in indexes:
 # result = collection.delete_many({})
 # print(f"Se eliminaron {result.deleted_count} documentos de la colección.")
 
-# Cuenta los documentos en la colección
+Cuenta los documentos en la colección
 document_count = collection.count_documents({})
 print(f"La colección tiene {document_count} documentos.")

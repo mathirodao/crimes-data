@@ -88,7 +88,7 @@ def generate_crime_data(num_crimes):
         })
     return crimes
 
-# Generate 40,000+ crimes
+# Generate 70,000 crimes
 crimes = generate_crime_data(70000)
 
 # Write to a JSON file

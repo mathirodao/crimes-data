@@ -6,6 +6,7 @@ from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
+    app.config['PORT'] = 5001
 
     load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
