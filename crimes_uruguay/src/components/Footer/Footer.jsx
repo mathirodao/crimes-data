@@ -30,7 +30,7 @@ const Footer = () => {
 
             <div className="flex items-center space-x-2">
               <a
-                href="https://github.com/"
+                href="https://github.com/mathirodao/crimes-data"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center space-x-2 text-lg hover:underline"

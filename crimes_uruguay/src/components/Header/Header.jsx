@@ -38,7 +38,7 @@ useEffect(() => {
           purposes.
         </p>
         <a
-          href="https://github.com/"
+          href="https://github.com/mathirodao/crimes-data"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center space-x-2 text-white text-lg hover:underline pt-10 icon"
