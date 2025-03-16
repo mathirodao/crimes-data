@@ -7,7 +7,8 @@ const BarChart = () => {
   const chartInstance = useRef(null);
 
   useEffect(() => {
-    fetch("/api/crimes/count_by_type")
+    console.log("API URL:", import.meta.env.VITE_API_URL);
+    fetch(`${import.meta.env.VITE_API_URL}/api/crimes/count_by_type`)
       .then((response) => response.json())
       .then((data) => {
 

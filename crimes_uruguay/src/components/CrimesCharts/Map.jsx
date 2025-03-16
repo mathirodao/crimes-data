@@ -19,7 +19,7 @@ const MapLibreUruguay = () => {
 
   // Cargar años disponibles
   useEffect(() => {
-    fetch("/api/crimes_count")
+    fetch(`${import.meta.env.VITE_API_URL}/api/crimes_count`)
       .then((response) => response.json())
       .then((data) => {
         const years = [
@@ -36,7 +36,7 @@ const MapLibreUruguay = () => {
   useEffect(() => {
     if (!year) return;
     setIsLoading(true); 
-    fetch(`/api/crimes/year/${year}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/crimes/year/${year}`)
       .then((response) => response.json())
       .then((data) => {
         const statsByDepartment = calculateCrimeStatsForAllDepartments(data); 

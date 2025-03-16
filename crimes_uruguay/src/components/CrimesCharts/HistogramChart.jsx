@@ -7,7 +7,7 @@ const HistogramChart = () => {
   const chartInstance = useRef(null);
 
   useEffect(() => {
-    fetch("/api/crimes/age_distribution")
+    fetch(`${import.meta.env.VITE_API_URL}/api/crimes/age_distribution`)
       .then((response) => response.json())
       .then((data) => {
   

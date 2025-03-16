@@ -26,7 +26,7 @@ const CrimeSearch = () => {
   // Cargar datos desde la API
   const fetchData = async (page = 1, limit = 20) => {
     try {
-      const response = await fetch(`/api/crimes?page=${page}&limit=${limit}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/crimes?page=${page}&limit=${limit}`);
       const data = await response.json();
 
       if (!data || !Array.isArray(data.data)) {

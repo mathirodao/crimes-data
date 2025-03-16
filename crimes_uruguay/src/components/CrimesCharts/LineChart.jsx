@@ -9,7 +9,7 @@ const LineChart = () => {
   const chartInstance = useRef(null);
 
   useEffect(() => {
-    fetch('/api/crimes_count')
+    fetch(`${import.meta.env.VITE_API_URL}/api/crimes_count`)
       .then(response => response.json())
       .then(data => {
         const years = [...new Set(data.map(item => Number(item._id.split('/')[2])))];
@@ -21,7 +21,7 @@ const LineChart = () => {
   useEffect(() => {
     if (year === null) return;
 
-    fetch('/api/crimes_count')
+    fetch(`${import.meta.env.VITE_API_URL}/api/crimes_count`)
       .then(response => response.json())
       .then(data => {
         const filteredData = data.filter(item => {
