@@ -7,16 +7,16 @@ api_bp = Blueprint("api", __name__)
 def get_count_crimes():
     collection = current_app.db["infoCrimes"]
     
-    # Convertir la fecha a formato adecuado para usarla en el gráfico
+    
     pipeline = [
         {
             "$group": {
-                "_id": "$date",  # Agrupar por la fecha del crimen
-                "crime_count": {"$sum": 1}  # Contar el número de crímenes por fecha
+                "_id": "$date",  # group by date crime
+                "crime_count": {"$sum": 1}  # crimes by date
             }
         },
         {
-            "$sort": {"_id": 1}  # Ordenar por fecha ascendente
+            "$sort": {"_id": 1}  # ordeer by date asc
         }
     ]
     
@@ -25,22 +25,22 @@ def get_count_crimes():
 
 @api_bp.route('/crimes', methods=['GET'])
 def get_all_crimes():
-    # Obtener parámetros de paginación (con valores predeterminados)
-    page = int(request.args.get('page', 1))  # Página actual (por defecto: 1)
-    limit = int(request.args.get('limit', 50))  # Elementos por página (por defecto: 50)
+    # get parameters pag 
+    page = int(request.args.get('page', 1))  # currently page 
+    limit = int(request.args.get('limit', 50))  # items/page
 
     collection = current_app.db["infoCrimes"]
 
-    # Calcular el índice de inicio y fin para la paginación
+    # Calculate start index and end pag
     skip = (page - 1) * limit
 
-    # Obtener los documentos paginados
+    # get docs pag
     crimes = list(collection.find({}, {"_id": 0}).skip(skip).limit(limit))
 
-    # Contar el total de documentos para calcular el número total de páginas
+    # total documents, total pages
     total_count = collection.count_documents({})
 
-    # Construir la respuesta
+    # response
     response = {
         "data": crimes,
         "pagination": {

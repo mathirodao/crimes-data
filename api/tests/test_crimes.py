@@ -12,7 +12,7 @@ def client():
     app.config["TESTING"] = True
     app.config["MONGO_URI"] =  app.config.get("MONGO_URI", Config.MONGO_URI)
 
-    # Configurar conexión a MongoDB
+    # config MongoDB
     mongo_client = MongoClient(app.config["MONGO_URI"])
     app.db = mongo_client.get_default_database()  
 
@@ -22,7 +22,7 @@ def client():
             current_app.db["infoCrimes"].delete_many({})
         yield client
 
-    # Elimina la base de datos de pruebas al finalizar
+    # delete db
     mongo_client.drop_database("test_db")
 
 
@@ -34,7 +34,7 @@ def test_get_all_crimes(client):
     ]
     current_app.db["infoCrimes"].insert_many(crimes_data)
 
-    # Realizar solicitud GET
+    # GET
     response = client.get("/api/crimes")
     assert response.status_code == 200
     assert response.json == crimes_data
@@ -42,14 +42,14 @@ def test_get_all_crimes(client):
 
 def test_get_crimes_by_year(client):
     """Test para obtener crímenes por año."""
-    # Insertar datos en la base de pruebas
+    # Insert data 
     crimes_data = [
         {"crime_type": "theft", "date": "2023-01-01"},
         {"crime_type": "fraud", "date": "2022-12-31"}
     ]
     current_app.db["infoCrimes"].insert_many(crimes_data)
 
-    # Realizar solicitud GET
+    # GET
     response = client.get("/api/crimes/year/2023")
     assert response.status_code == 200
     assert response.json == [{"crime_type": "theft", "date": "2023-01-01"}]
@@ -57,7 +57,7 @@ def test_get_crimes_by_year(client):
 
 def test_get_crimes_by_type(client):
     """Test para obtener crímenes por tipo."""
-    # Insertar datos en la base de pruebas
+    # Insert data 
     crimes_data = [
         {"crime_type": "theft", "date": "2023-01-01"},
         {"crime_type": "fraud", "date": "2022-12-31"}
